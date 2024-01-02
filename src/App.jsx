@@ -1,18 +1,37 @@
+import { useState } from "react";
 import { Button, Toast, SarahProvider } from "./sarah/components";
 
 function App() {
-  const handleButton = () => {
-    console.log("Welcome to Sarah");
+  const [isOpen, setOpen] = useState(false);
+  const [status, setStatus] = useState(false);
+
+  const handleClick = (status) => {
+    setOpen(true);
+    setStatus(status);
   };
+
   return (
     <SarahProvider>
       <Button
-        title="Click Me"
+        title="Accept"
         variant="primary"
         disabled={false}
-        onClick={handleButton}
+        onClick={() => handleClick(true)}
       />
-      <Toast status="success" message="Welcome to Sarah" />
+
+      <Button
+        title="Reject"
+        variant="secondary"
+        disabled={false}
+        onClick={() => handleClick(false)}
+      />
+
+      <Toast
+        isOpen={isOpen}
+        onClose={() => setOpen(false)}
+        status={status ? "success" : "error"}
+        message={status ? "Request approved" : "Request rejected"}
+      />
     </SarahProvider>
   );
 }

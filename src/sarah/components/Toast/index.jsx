@@ -24,18 +24,21 @@ const StyledToast = styled.div`
   ${(props) => baseStyles(props)}
 `;
 
-function Toast({ message, status, duration }) {
+function Toast({ message, status, duration, isOpen, onClose }) {
   const theme = useTheme();
-  const toastDuration = duration ? duration : 3000;
-  const [show, setShow] = useState(true);
+  const toastDuration = duration ? duration : 1000;
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
+    setShow(isOpen);
+
     const timer = setTimeout(() => {
       setShow(false);
+      onClose();
     }, toastDuration);
 
     return () => clearTimeout(timer);
-  }, [toastDuration]);
+  }, [toastDuration, isOpen, onClose]);
 
   return (
     <StyledToast theme={theme} status={status} show={show}>

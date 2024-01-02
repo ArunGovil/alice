@@ -5,6 +5,7 @@ const baseStyles = (props) => `
   width: 100px;
   height: 40px;
   border: none;
+  margin: ${props.theme.spacing[2]};
   cursor: ${props.disabled ? "not-allowed" : "pointer"};
   background-color: ${props.theme.colors.brand.primary};
   color: ${props.theme.colors.surface.solid.white};
