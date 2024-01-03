@@ -13,4 +13,4 @@ const useTheme = () => {
   return useContext(SarahContext);
 };
 
-export { SarahContext, SarahProvider, useTheme };
+export { SarahProvider, useTheme };
